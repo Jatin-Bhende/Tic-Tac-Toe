@@ -1,0 +1,65 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --cell-size: 100px;
+  --mark-size: calc(var(--cell-size)*0.9);
+}
+body {
+  margin: 0;
+}
+
+.gameboard {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(3, auto);
+}
+
+.tile {
+  height: var(--cell-size);
+  width: var(--cell-size);
+  border: 2px solid black;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.x::before,
+.x::after {
+  content: '*';
+  height: var(--mark-size);
+  width: var(--mark-size) * 0.3;
+  background-color: black;
+}
+
+.tile:first-child,
+.tile:nth-child(2),
+.tile:nth-child(3) {
+  border-top: none;
+}
+
+.tile:last-child,
+.tile:nth-child(3),
+.tile:nth-child(6) {
+  border-right: none;
+}
+
+.tile:nth-child(1),
+.tile:nth-child(4),
+.tile:nth-child(7) {
+  border-left: none;
+}
+
+.tile:last-child,
+.tile:nth-child(7),
+.tile:nth-child(8) {
+  border-bottom: none;
+}
