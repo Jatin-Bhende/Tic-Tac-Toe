@@ -11,7 +11,7 @@ body {
   margin: 0;
 }
 
-.gameboard {
+.gameboard{
   height: 100vh;
   width: 100vw;
   display: grid;
@@ -30,14 +30,56 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
-.x::before,
-.x::after {
-  content: '*';
+.tile.x,.tile.o{
+  cursor: not-allowed;
+}
+
+.tile.x::before,
+.tile.x::after,
+.gameboard.x .tile:not(.x):not(.o):hover::before,
+.gameboard.x .tile:not(.x):not(.o):hover::after{
+  content: '';
   height: var(--mark-size);
-  width: var(--mark-size) * 0.3;
+  width: calc(var(--mark-size) * 0.15);
   background-color: black;
+  position: absolute;
+
+}
+
+
+
+.tile.x::before,
+.gameboard.x .tile:not(.x):not(.o):hover::before{
+  transform: rotate(45deg);
+}
+
+.tile.x::after,
+.gameboard.x .tile:not(.x):not(.o):hover::after{
+  transform: rotate(-45deg);
+}
+
+.tile.o::before,
+.tile.o::after,
+.gameboard.o .tile:not(.x):not(.o):hover::before,
+.gameboard.o .tile:not(.x):not(.o):hover::after
+{
+  content:'';
+  height: calc(var(--mark-size)*0.95);
+  width:calc(var(--mark-size)*0.95);
+  border-radius: 50%;
+  background-color: black;
+  position: absolute;
+  cursor:not-allowed;
+}
+
+.tile.o::after,
+.gameboard.o .tile:not(.x):not(.o):hover::after{
+  height: calc(var(--mark-size)*0.65);
+  width:calc(var(--mark-size)*0.65);
+  background-color: white;
 }
 
 .tile:first-child,
@@ -63,3 +105,45 @@ body {
 .tile:nth-child(8) {
   border-bottom: none;
 }
+
+.gameboard.x .tile:not(.x):not(.o):hover::before,
+.gameboard.x .tile:not(.x):not(.o):hover::after,
+.gameboard.o .tile:not(.x):not(.o):hover::before
+{
+  background-color: lightgrey;
+}
+
+.win{   
+  display: none;
+  position:fixed;
+  inset:0;
+  
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  background-color: rgba(0,0,0,0.9);
+}
+
+.winning-message{
+    font-size: 5rem;
+    color: beige;
+}
+
+.win button {
+  font-size: 3rem;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.win button:hover {
+  background-color: black;
+  color: white;
+  border-color: white;
+  cursor: pointer;
+}
+
+.win.show-result {
+    display:flex;
+}
+
+
