@@ -102,3 +102,5 @@ restartButton.addEventListener("click", () => {
 // make a findEmptyTiles() function that runs after every player turn -> returns list of empty tiles
 
 // make hitRandomEmptyTile() function which randomly puts an O into one of the tile.
+
+// added comment on shivam-branch
